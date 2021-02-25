@@ -1,5 +1,5 @@
 class Ball {
-  constructor(coords) {
+  constructor(coords, sound) {
     //   Coordenadas
     this.x = coords.x;
     this.y = coords.y;
@@ -8,6 +8,8 @@ class Ball {
     this.height = BALL_SPECS.height;
     //   Imagen
     this.img = loadImage("src/assets/sprites/ball.png");
+    // Sonido
+    this.sound = sound;
     // Numero aleatorio para escoger polaridad
     this.random = Math.floor(Math.random() * 2) + 1;
     //   Velocidad
@@ -37,6 +39,7 @@ class Ball {
         this.height + this.y > p.y
       ) {
         this.speedX *= -1;
+        this.sound.play();
       }
     });
   }

@@ -1,13 +1,23 @@
+let bgSoundFile;
+let hitSoundFile;
 let bg;
 let ball;
 let players = [];
+
+function preload() {
+  soundFormats("wav");
+  bgSoundFile = loadSound("src/assets/sfx/musicloop.wav");
+  hitSoundFile = loadSound("src/assets/sfx/kick.wav");
+}
+
 function setup() {
   bg = loadImage("src/assets/sprites/board.png");
   ball = new Ball(
     BallFactory.coords(
       (BOARD_SPECS.width - BALL_SPECS.width) / 2,
       (BOARD_SPECS.height - BALL_SPECS.height) / 2
-    )
+    ),
+    hitSoundFile
   );
   players.push(
     new Paddle(
@@ -25,6 +35,7 @@ function setup() {
     )
   );
   ball.players = players;
+  bgSoundFile.loop();
   createCanvas(BOARD_SPECS.width, BOARD_SPECS.height);
 }
 
