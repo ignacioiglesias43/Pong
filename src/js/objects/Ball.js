@@ -1,5 +1,5 @@
 class Ball {
-  constructor(coords, sound) {
+  constructor(coords, sound, players = []) {
     //   Coordenadas
     this.x = coords.x;
     this.y = coords.y;
@@ -16,11 +16,21 @@ class Ball {
     this.speedX = this.random == 1 ? 5 : -5;
     this.speedY = this.random == 1 ? 5 : -5;
     // Paddles Stack Ref
-    this.players = [];
+    this.players = players;
+    // Hitbox
+    this.hb = new HitboxSquare(
+      HitBoxFactory.coords(this.x + 19, this.y + 19),
+      HitBoxFactory.squareDims(29, 29)
+    );
   }
 
   move() {
-    if (this.x < 0 || this.x >= BOARD_SPECS.width - this.width) {
+    // Hit del escenario
+    if (
+      this.x < 0 ||
+      this.x >= BOARD_SPECS.width - this.width ||
+      this.players.some((p) => p.hb.wasHitSquare(this.hb))
+    ) {
       this.speedX *= -1;
     }
     if (this.y < 0 || this.y >= BOARD_SPECS.height - this.height) {
@@ -28,26 +38,13 @@ class Ball {
     }
     this.x += this.speedX;
     this.y += this.speedY;
-  }
-
-  collision() {
-    this.players.forEach((p) => {
-      if (
-        this.x < p.x + p.width &&
-        this.x + this.width > p.x &&
-        this.y < p.y + p.height &&
-        this.height + this.y > p.y
-      ) {
-        this.speedX *= -1;
-        this.sound.play();
-      }
-    });
+    this.hb.x += this.speedX;
+    this.hb.y += this.speedY;
   }
 
   draw() {
     image(this.img, this.x, this.y, this.width, this.height);
     this.move();
-    this.collision();
   }
 }
 

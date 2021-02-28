@@ -12,13 +12,6 @@ function preload() {
 
 function setup() {
   bg = loadImage("src/assets/sprites/board.png");
-  ball = new Ball(
-    BallFactory.coords(
-      (BOARD_SPECS.width - BALL_SPECS.width) / 2,
-      (BOARD_SPECS.height - BALL_SPECS.height) / 2
-    ),
-    hitSoundFile
-  );
   players.push(
     new Paddle(
       PaddleFactory.coords(0, BOARD_SPECS.height / 2 - PADDLE_SPECS.height / 2),
@@ -34,8 +27,15 @@ function setup() {
       PaddleFactory.controllSettings(38, 40)
     )
   );
-  ball.players = players;
-  bgSoundFile.loop();
+  ball = new Ball(
+    BallFactory.coords(
+      (BOARD_SPECS.width - BALL_SPECS.width) / 2,
+      (BOARD_SPECS.height - BALL_SPECS.height) / 2
+    ),
+    hitSoundFile,
+    players
+  );
+  // bgSoundFile.loop();
   createCanvas(BOARD_SPECS.width, BOARD_SPECS.height);
 }
 

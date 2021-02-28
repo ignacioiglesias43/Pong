@@ -12,17 +12,24 @@ class Paddle {
     this.speed = 5;
     //   Controles
     this.controllSettings = controllSettings;
+    // Hitbox
+    this.hb = new HitboxSquare(
+      HitBoxFactory.coords(this.x + 9, this.y + 9),
+      HitBoxFactory.squareDims(19, 110.5)
+    );
   }
 
   moveUp() {
-    if (this.y >= 0) {
+    if (this.hb.y >= 0) {
       this.y -= this.speed;
+      this.hb.y -= this.speed;
     }
   }
 
   moveDown() {
-    if (this.y <= BOARD_SPECS.height - this.height) {
+    if (this.hb.y <= BOARD_SPECS.height - this.hb.height) {
       this.y += this.speed;
+      this.hb.y += this.speed;
     }
   }
 
