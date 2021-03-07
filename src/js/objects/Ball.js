@@ -17,10 +17,11 @@ class Ball {
     this.speedY = this.random == 1 ? 5 : -5;
     // Paddles Stack Ref
     this.players = players;
+    this.type = "circle";
     // Hitbox
-    this.hb = new HitboxSquare(
+    this.hb = new HitBox(
       HitBoxFactory.coords(this.x + 19, this.y + 19),
-      HitBoxFactory.squareDims(29, 29)
+      HitBoxFactory.circleDims(29, 29)
     );
   }
 
@@ -29,8 +30,10 @@ class Ball {
     if (
       this.x < 0 ||
       this.x >= BOARD_SPECS.width - this.width ||
-      this.players.some((p) => p.hb.wasHitSquare(this.hb))
+      this.players.some((p) => p.hb.wasHit(this.hb, this.type))
     ) {
+      this.sound.play();
+      this.sound.setVolume(0.15);
       this.speedX *= -1;
     }
     if (this.y < 0 || this.y >= BOARD_SPECS.height - this.height) {

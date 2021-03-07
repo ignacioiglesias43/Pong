@@ -12,8 +12,9 @@ class Paddle {
     this.speed = 5;
     //   Controles
     this.controllSettings = controllSettings;
+    this.type = "rect";
     // Hitbox
-    this.hb = new HitboxSquare(
+    this.hb = new HitBox(
       HitBoxFactory.coords(this.x + 9, this.y + 9),
       HitBoxFactory.squareDims(19, 110.5)
     );

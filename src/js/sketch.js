@@ -35,7 +35,7 @@ function setup() {
     hitSoundFile,
     players
   );
-  // bgSoundFile.loop();
+  bgSoundFile.loop();
   createCanvas(BOARD_SPECS.width, BOARD_SPECS.height);
 }
 
