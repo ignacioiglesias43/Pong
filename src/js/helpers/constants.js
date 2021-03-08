@@ -6,9 +6,10 @@ const BOARD_SPECS = {
 const PADDLE_SPECS = {
   width: 37,
   height: 128.5,
+  hb: 9,
 };
 
-const BALL_SPECS = { width: 67, height: 67 };
+const BALL_SPECS = { width: 67, height: 67, hb: 19 };
 
 const PLAYERS_ID = {
   player1: "p1",

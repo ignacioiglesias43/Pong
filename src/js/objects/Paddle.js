@@ -14,7 +14,7 @@ class Paddle {
     this.controllSettings = controllSettings;
     // Hitbox
     this.hb = new HitBox(
-      HitBoxFactory.coords(this.x + 9, this.y + 9),
+      HitBoxFactory.coords(this.x + PADDLE_SPECS.hb, this.y + PADDLE_SPECS.hb),
       HitBoxFactory.squareDims(19, 110.5)
     );
     // Puntaje HB

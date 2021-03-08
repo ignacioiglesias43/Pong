@@ -1,10 +1,12 @@
 class Points {
-  constructor(coords, font) {
+  constructor(coords, font, sound) {
     //   Coordenadas
     this.x = coords.x;
     this.y = coords.y;
     //   Fonts
     this.font = font;
+    //   Sound
+    this.sound = sound;
     //   Puntajes
     this.p1 = 0;
     this.p2 = 0;
@@ -20,6 +22,8 @@ class Points {
 
   playrPointPlusPlus(playerId) {
     this[playerId]++;
+    this.sound.play();
+    this.sound.setVolume(0.15);
   }
 }
 

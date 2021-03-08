@@ -19,7 +19,7 @@ class Ball {
     this.players = players;
     // Hitbox
     this.hb = new HitBox(
-      HitBoxFactory.coords(this.x + 19, this.y + 19),
+      HitBoxFactory.coords(this.x + BALL_SPECS.hb, this.y + BALL_SPECS.hb),
       HitBoxFactory.squareDims(29, 29)
     );
     // Puntos
@@ -30,6 +30,7 @@ class Ball {
     this.players.forEach((p) => {
       if (p.pointHb.wasHitSquare(this.hb)) {
         this.points.playrPointPlusPlus(p.playerId);
+        this.reset();
       }
     });
 
@@ -45,6 +46,22 @@ class Ball {
     this.y += this.speedY;
     this.hb.x += this.speedX;
     this.hb.y += this.speedY;
+  }
+
+  reset() {
+    this.x = BOARD_SPECS.width / 2 - BALL_SPECS.width / 2;
+    this.y = BOARD_SPECS.height / 2 - BALL_SPECS.width / 2;
+
+    this.hb.x = this.x + BALL_SPECS.hb;
+    this.hb.y = this.y + BALL_SPECS.hb;
+
+    this.speedY = this.speedY > 0 ? 5 : -5;
+    this.speedX = this.speedX > 0 ? 5 : -5;
+
+    this.players.forEach((player) => {
+      player.y = BOARD_SPECS.height / 2 - PADDLE_SPECS.height / 2;
+      player.hb.y = BOARD_SPECS.height / 2 - PADDLE_SPECS.height / 2;
+    });
   }
 
   draw() {

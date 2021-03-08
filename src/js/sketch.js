@@ -1,5 +1,6 @@
 let bgSoundFile;
 let hitSoundFile;
+let pointSound;
 let gameFont;
 let bg;
 let ball;
@@ -10,6 +11,7 @@ function preload() {
   soundFormats("wav");
   bgSoundFile = loadSound("src/assets/sfx/musicloop.wav");
   hitSoundFile = loadSound("src/assets/sfx/kick.wav");
+  pointSound = loadSound("src/assets/sfx/point.wav");
   gameFont = loadFont("src/assets/fonts/kenvector_future_thin.ttf");
 }
 
@@ -32,7 +34,11 @@ function setup() {
       PLAYERS_ID.player2
     )
   );
-  pts = new Points(PointsFactory.coords(BOARD_SPECS.width / 2, 70), gameFont);
+  pts = new Points(
+    PointsFactory.coords(BOARD_SPECS.width / 2, 70),
+    gameFont,
+    pointSound
+  );
   ball = new Ball(
     BallFactory.coords(
       (BOARD_SPECS.width - BALL_SPECS.width) / 2,
