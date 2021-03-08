@@ -1,5 +1,5 @@
 class Paddle {
-  constructor(coords, controllSettings) {
+  constructor(coords, controllSettings, playerId) {
     //   Coordenadas
     this.x = coords.x;
     this.y = coords.y;
@@ -12,11 +12,23 @@ class Paddle {
     this.speed = 5;
     //   Controles
     this.controllSettings = controllSettings;
-    this.type = "rect";
     // Hitbox
     this.hb = new HitBox(
       HitBoxFactory.coords(this.x + 9, this.y + 9),
       HitBoxFactory.squareDims(19, 110.5)
+    );
+    // Puntaje HB
+    this.playerId = playerId;
+    let pointHbCoords;
+    if (playerId === PLAYERS_ID.player1) {
+      pointHbCoords = HitBoxFactory.coords(BOARD_SPECS.width + 10, 0);
+    } else {
+      pointHbCoords = HitBoxFactory.coords(-20, 0);
+    }
+
+    this.pointHb = new HitBox(
+      pointHbCoords,
+      HitBoxFactory.squareDims(10, BOARD_SPECS.height)
     );
   }
 

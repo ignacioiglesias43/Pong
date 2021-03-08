@@ -1,5 +1,5 @@
 class Ball {
-  constructor(coords, sound, players = []) {
+  constructor(coords, sound, players = [], points) {
     //   Coordenadas
     this.x = coords.x;
     this.y = coords.y;
@@ -17,21 +17,23 @@ class Ball {
     this.speedY = this.random == 1 ? 5 : -5;
     // Paddles Stack Ref
     this.players = players;
-    this.type = "circle";
     // Hitbox
     this.hb = new HitBox(
       HitBoxFactory.coords(this.x + 19, this.y + 19),
-      HitBoxFactory.circleDims(29, 29)
+      HitBoxFactory.squareDims(29, 29)
     );
+    // Puntos
+    this.points = points;
   }
 
   move() {
-    // Hit del escenario
-    if (
-      this.x < 0 ||
-      this.x >= BOARD_SPECS.width - this.width ||
-      this.players.some((p) => p.hb.wasHit(this.hb, this.type))
-    ) {
+    this.players.forEach((p) => {
+      if (p.pointHb.wasHitSquare(this.hb)) {
+        this.points.playrPointPlusPlus(p.playerId);
+      }
+    });
+
+    if (this.players.some((p) => p.hb.wasHitSquare(this.hb))) {
       this.sound.play();
       this.sound.setVolume(0.15);
       this.speedX *= -1;

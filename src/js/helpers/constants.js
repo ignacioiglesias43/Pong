@@ -9,3 +9,8 @@ const PADDLE_SPECS = {
 };
 
 const BALL_SPECS = { width: 67, height: 67 };
+
+const PLAYERS_ID = {
+  player1: "p1",
+  player2: "p2",
+};
