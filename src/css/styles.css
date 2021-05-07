@@ -1,0 +1,32 @@
+@font-face {
+  font-family: KenVector;
+  src: url("../assets/fonts/kenvector_future_thin.ttf");
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: KenVector;
+}
+
+#instructions {
+  padding: 20px;
+  margin-top: 0px;
+  background-color: #ccc;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#instructions h1,
+h2 {
+  text-align: center;
+}
+
+#instructions h2 {
+  margin-top: 10px;
+}
+
+#instructions ul > li {
+  text-align: center;
+  margin-top: 10px;
+  list-style: none;
+}
