@@ -3,6 +3,17 @@
   src: url("../assets/fonts/kenvector_future_thin.ttf");
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -12,16 +23,19 @@
 #instructions {
   padding: 20px;
   margin-top: 0px;
-  background-color: #ccc;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  background-color: #1d1e82;
+  color: #ffffff;
+  box-shadow: -10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 #instructions h1,
-h2 {
+h2,
+h3 {
   text-align: center;
 }
 
-#instructions h2 {
+#instructions h2,
+#instructions h3 {
   margin-top: 10px;
 }
 
